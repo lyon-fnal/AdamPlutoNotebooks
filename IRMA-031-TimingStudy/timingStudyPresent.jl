@@ -15,7 +15,7 @@ end
 
 # ╔═╡ d5cb4316-4028-11eb-340e-19e4116c4105
 begin
-	using Pkg, PlutoUI, JLD2, Chain, DataFrames, CategoricalArrays, Plots, StatsPlots
+	using Pkg, PlutoUI, JLD2, DataFrames, CategoricalArrays, Plots, StatsPlots
 	gr()
 end
 
