@@ -20,7 +20,7 @@ See the [Container Registry & Runtime (Docker Deploys)](https://devcenter.heroku
 
 - View it in your browser with `heroku open`. It will take a minute or two before the app responds.
 
-You can look at log info with `heroku logs [--tail]` and you can exec into the container with `heroku ps:exec`.
+You can look at log info with `heroku logs [--tail]`. You can see if the dyno is up and your free quota with `heroku ps`. Note that `heroku ps:exec` does not work (apparently that only works on slugs).
 
 If you see [`R14` errors](https://devcenter.heroku.com/articles/error-codes#r14-memory-quota-exceeded) in the log it means that Julia is swapping.
 
