@@ -23,13 +23,15 @@ end
 md"""
 **Instructions:** 
 
-Wait for the notebook to load (when all of the wavy lines in the left margin disappear), then simply scroll through the notebook.
+Wait for the notebook to load (when all of the wavy lines in the left margin disappear and all the plots appear; takes ~2 minutes).
 
 You can also turn on "Presenter view" by pressing "Present" in the title slide below (presenter view adds vertical whitespace to separate the slides). Use the arrow buttons on the lower right of the window to advance through the slides or go back. Press the "Present" button again to exit presenter view. 
 
-You can see hidden code by clicking on the "slash-eye" in the left margin. Click again to re-hide. 
+You can see hidden code by mousing over a cell and clicking on the "slash-eye" that appears at left. Click again to re-hide. 
 
-This notebook is live when viewed in *Binder*. UI elements (e.g. buttons, sliders, and selection menus) are active. Changing a cell will automatically execute dependent cells. 
+This notebook is live when viewed in *Heroku*. UI elements (e.g. buttons, sliders, and selection menus) are active. You can add your own cells (click on "+" in left margin). Changing a cell will automatically execute dependent cells. Note that these free Heroku nodes are very underpowered. 
+
+This is a [Pluto.jl](https://github.com/fonsp/Pluto.jl) notebook. Source is on [GitHub](https://github.com/lyon-fnal/AdamPlutoNotebooks).
 """
 
 # ╔═╡ f247e40a-4027-11eb-3746-d5b070890cd7
@@ -84,6 +86,19 @@ md"""
 # ╔═╡ cb257066-4033-11eb-15f6-e198a2f1a9e7
 md"""
 ## Total read time
+"""
+
+# ╔═╡ a1217a66-427d-11eb-19b9-2f6139a82b2f
+md"""
+# Notes added after meetng...
+
+Why am I seeing such variation in read times among ranks? An explanation could be the fact that HDF5 always reads at the level of chunks which then need to be decompressed. The chunk size of 1 MB is uncompressed. Some chunks will compress better than others and thus the i/o time will vary. Making the chunks larger is not really a good solution as then the decompression time will increase (though thinking more about that - I don't follow that argument - Decompressing 200K small chunks shouldn't be that different than decompressing 20K larger chunks ... it's still the same amount of data). 
+
+Things to try
+
+- I'm not getting much compression for the float values. Try not compressing/chunking them at all. That will make the i/o time more even and there will be no decompression time.
+
+- Try to get `darshan` to work. And let the ANL authors know - they haven't tried it with Julia. 
 """
 
 # ╔═╡ c0376d86-4028-11eb-25cc-298c16e79635
@@ -294,6 +309,7 @@ plotMedianAndMax("total")
 # ╟─cb257066-4033-11eb-15f6-e198a2f1a9e7
 # ╟─d23baa98-4033-11eb-1d7a-c1ed199db7a6
 # ╟─ed679ac8-4033-11eb-1b00-85de7e7182e5
+# ╟─a1217a66-427d-11eb-19b9-2f6139a82b2f
 # ╟─c0376d86-4028-11eb-25cc-298c16e79635
 # ╠═baffc404-402c-11eb-0b18-27f984b63ee1
 # ╠═34a2c458-4034-11eb-3ec3-434058547662
