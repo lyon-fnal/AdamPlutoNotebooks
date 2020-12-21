@@ -143,7 +143,7 @@ md"""
 Storing 10 columns of data: $(HTML("<br/>"))
 `run, subrun, event, bunchNum, caloIndex, islandIndex, time, energy, x, y`
 
-For `irmaData_2C_merged.h5` each column has 22,921,764,790 (23B) rows. All data stored with deflate(6) and shuffle. Chunksize is 1MB (262,144 chunks in the file). Floats are single precision.
+For `irmaData_2C_merged.h5` each column has 22,921,764,790 (23B) rows. All data stored with deflate(6) and shuffle. Chunksize is 1MB (262,144 chunks in the file). Floats are single precision. The file is stored on Cori's Lustre scratch volume with the [`stripe large`](https://docs.nersc.gov/performance/io/lustre/) setting (72 OSTs). 
  
 $br
 
