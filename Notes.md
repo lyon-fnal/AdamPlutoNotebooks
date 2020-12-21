@@ -54,8 +54,10 @@ If you see [`R14` errors](https://devcenter.heroku.com/articles/error-codes#r14-
 If you want to try the docker container locally, note that you must specify the port Pluto will use in an environment variable. For example,
 
 ```
-docker run -p 5000:5000 -e PORT=5000 registry.heroku.com/enigmatic-dawn-62308/web
+docker run -p 127.0.0.1:5000:5000 -e PORT=5000 registry.heroku.com/enigmatic-dawn-62308/web
 ```
+
+Then connect your browser to `localhost:5000`.
 
 ## Other solutions considered
 
