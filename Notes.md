@@ -8,7 +8,7 @@ See the [Container Registry & Runtime (Docker Deploys)](https://devcenter.heroku
 
 - `cd` to the top of the git repository
 
-- The build process will create a shared object with pre-compiled packages with  [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl). We need to setup the `precompile.jl` fille, made up of a file for `Pluto` and a file for each of your notebooks (these files have the function calls recorded that the compiler will use). Note that this will lock versions of these packages (that's likely a good thing). If you update the packages, you should regenerate the `precompile.jl` file with these instructions. Within the container. the base system image will be replaced with the generated image, ensuring that all julia instances will use it.
+- The build process will create a shared object with packages compiled by [PackageCompiler.jl](https://github.com/JuliaLang/PackageCompiler.jl). We need to setup the `precompile.jl` fille, made up of a file for `Pluto` and a file for each of your notebooks (these files have the function calls recorded that the compiler will use). Note that this will lock versions of these packages (that's likely a good thing). If you update the packages, you should regenerate the `precompile.jl` file with these instructions. Within the container, the julia base system image will be replaced with the generated image, ensuring that all julia instances will use it.
 
 -  Make the `precompile-pluto.jl` script with,
 
@@ -49,7 +49,13 @@ cat precompile-*.jl | sort | uniq > precompile.jl
 
 You can look at log info with `heroku logs [--tail]`. You can see if the dyno is up and your free quota with `heroku ps`. Note that `heroku ps:exec` does not work (apparently that only works on slugs).
 
-If you see [`R14` errors](https://devcenter.heroku.com/articles/error-codes#r14-memory-quota-exceeded) in the log it means that Julia is swapping.
+If you see [`R14` errors](https://devcenter.heroku.com/articles/error-codes#r14-memory-quota-exceeded) in the log it means that the VM is swapping and it will be slow (this happens at 500 MB of use). The VM will restart if you reach 1 GB of memory usage.
+
+If you want to try the docker container locally, note that you must specify the port Pluto will use in an environment variable. For example,
+
+```
+docker run -p 5000:5000 -e PORT=5000 registry.heroku.com/enigmatic-dawn-62308/web
+```
 
 ## Other solutions considered
 
