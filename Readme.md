@@ -8,7 +8,7 @@ NOTE: The notebooks work best on Chrome. If you are using Safari and it won't lo
 
 The virtual machine (or *dyno* in Heroku) for the free-tier sleeps after 30 minutes of inactivity. If you are waking it up, you may encounter some problems. Simply reload the web page if you see any error (e.g. application error; file not found error). It should work eventually. The page may take a minute or two to come up.
 
-- [IRMA-031-TimingStudy/timingStudyPresent](http://enigmatic-dawn-62308.herokuapp.com/open?path=IRMA-031-TimingStudy%2FtimingStudyPresent.jl) - Notebook shown at the 2020-12-17 "HDF5 IO and g-2 meeting with Northwestern".
+- [IRMA-031-TimingStudy/timingStudyPresent](https://enigmatic-dawn-62308.herokuapp.com/open?path=IRMA-031-TimingStudy%2FtimingStudyPresent.jl) - Notebook shown at the 2020-12-17 "HDF5 IO and g-2 meeting with Northwestern".
 
 
 See [Notes](Notes.md).
