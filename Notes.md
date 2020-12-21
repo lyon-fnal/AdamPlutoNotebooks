@@ -39,7 +39,8 @@ cat precompile-*.jl | sort | uniq > precompile.jl
 
 - Run `heroku create` (only once).
 
-- Build the image with `heroku container:push web`. This will build the image locally and then push to Heroku's repository.
+- Build the image with `heroku container:push web`. This will build the image locally and then push to Heroku's repository. The `Dockerfile` is written such that a minor change to a notebook
+will result in a very quick and small update to the docker image.
 
   - If you've already built the image, see [here](https://devcenter.heroku.com/articles/container-registry-and-runtime#pushing-an-existing-image).
 
@@ -57,7 +58,7 @@ If you want to try the docker container locally, note that you must specify the 
 docker run -p 127.0.0.1:5000:5000 -e PORT=5000 registry.heroku.com/enigmatic-dawn-62308/web
 ```
 
-Then connect your browser to `localhost:5000`.
+Then connect your browser to `localhost:5000`. Remember that any changes you make to the notebook will be lost when you exit the container, unless the notebook is on a volume you've mounted from your host filesystem.
 
 ## Other solutions considered
 

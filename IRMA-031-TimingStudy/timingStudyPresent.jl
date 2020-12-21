@@ -92,7 +92,7 @@ md"""
 md"""
 # Notes added after meetng...
 
-Why am I seeing such variation in read times among ranks? An explanation could be the fact that HDF5 always reads at the level of chunks which then need to be decompressed. The chunk size of 1 MB is uncompressed. Some chunks will compress better than others and thus the i/o time will vary. Making the chunks larger is not really a good solution as then the decompression time will increase (though thinking more about that - I don't follow that argument - Decompressing 200K small chunks shouldn't be that different than decompressing 20K larger chunks ... it's still the same amount of data). 
+Why am I seeing such variation in read times among ranks? An explanation could be the fact that HDF5 always reads at the level of chunks which then need to be decompressed. The chunk size of 1 MB is uncompressed. Some chunks will compress better than others and thus the i/o time will vary. Would be better to read in chunks all at once. 
 
 Things to try
 
